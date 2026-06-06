@@ -5532,7 +5532,6 @@
         background-color: #16a34a !important;
       }
     </style>
-
     <!-- Meta Pixel Code -->
     <script>
       !(function (f, b, e, v, n, t, s) {
@@ -7783,7 +7782,7 @@
                   </div>
                   <a
                     class="group inline-flex items-center justify-center w-full px-3 md:px-8 py-3 md:py-4 transition-colors bg-ochre text-ink hover:bg-terracotta hover:text-cream"
-                    href="https://pay.hotmart.com/Q106162359I?checkoutMode=10"
+                    href="https://pay.hotmart.com/Q106162359I?off=qvpht1hm&amp;checkoutMode=10"
                     id="6a2a0f46-6be5-f38f-9ea0-e0ddb0158faf"
                     ><span
                       class="text-[11px] md:text-sm uppercase tracking-[0.18em] md:tracking-[0.25em] font-medium mr-2 md:mr-3"
@@ -8468,5 +8467,29 @@
         </footer>
       </div>
     </div>
+
+    <!-- Parameter Tracking Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const fbclid = urlParams.get("fbclid");
+        const src = urlParams.get("src");
+
+        if (fbclid || src) {
+          const links = document.querySelectorAll('a[href*="pay.hotmart.com"]');
+          links.forEach((link) => {
+            try {
+              const url = new URL(link.href);
+              // Keep existing parameters like off=... and checkoutMode=10, just append new ones
+              if (fbclid) url.searchParams.set("fbclid", fbclid);
+              if (src) url.searchParams.set("src", src);
+              link.href = url.toString();
+            } catch (e) {
+              console.error("Error formatting URL:", e);
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
